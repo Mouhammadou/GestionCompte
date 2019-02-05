@@ -17,6 +17,10 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Collection<Compte> comptes;
 
+    public Client(){
+        super();
+    }
+
     public Client(String nom, String email) {
         super();
         this.nom = nom;

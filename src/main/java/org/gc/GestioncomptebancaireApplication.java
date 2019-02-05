@@ -31,12 +31,12 @@ public class GestioncomptebancaireApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        /*
         Client c1 = clientRepository.save(new Client("Doudou", "doudou@gmail.com"));
         Client c2 = clientRepository.save(new Client("Arame", "arame@gmail.com"));
 
         Compte cp1 = compteRepository.save(new CompteCourant("c1", new Date(), 90000.00, c1, 6000.00));
-        Compte cp2 = compteRepository.save(new CompteEpargne("c1", new Date(), 90000.00, c2, 5.5));
+        Compte cp2 = compteRepository.save(new CompteEpargne("c2", new Date(), 90000.00, c2, 5.5));
 
         Operation op1 = operationRepository.save(new Versement(new Date(), 4000.00, cp1));
         Operation op2 = operationRepository.save(new Versement(new Date(), 2300.00, cp1));
@@ -49,6 +49,7 @@ public class GestioncomptebancaireApplication implements CommandLineRunner {
         Operation op8 = operationRepository.save(new Retrait(new Date(), 3000.00, cp2));
 
         banqueService.verser("c1", 111111.00);
+        */
     }
 }
 
