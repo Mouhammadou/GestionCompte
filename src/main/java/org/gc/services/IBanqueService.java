@@ -10,5 +10,5 @@ public interface IBanqueService {
     public void verser(String cdeCpte, Double montant);
     public void retirer(String cdeCpte, Double montant);
     public void virement(String c1, String c2, Double montant);
-    public Page<Operation> listOperation(String cdeCpte, int page, Double montant);
+    public Page<Operation> listOperation(String cdeCpte, int page, int size);
 }

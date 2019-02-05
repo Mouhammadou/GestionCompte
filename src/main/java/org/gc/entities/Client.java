@@ -17,10 +17,10 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Collection<Compte> comptes;
 
-    public Client(String nom, String email, Collection<Compte> comptes) {
+    public Client(String nom, String email) {
+        super();
         this.nom = nom;
         this.email = email;
-        this.comptes = comptes;
     }
 
     public Long getCode() {

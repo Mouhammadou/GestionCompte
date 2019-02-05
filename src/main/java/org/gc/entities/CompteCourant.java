@@ -9,18 +9,24 @@ import java.util.Date;
 @DiscriminatorValue("CC")
 public class CompteCourant extends Compte{
 
-    private Long decouvert;
+    private Double decouvert;
 
-    public CompteCourant(String codeCompte, Date dateCreation, Double solde, Client client) {
+    public CompteCourant() {
+        super();
+    }
+
+    public CompteCourant(String codeCompte, Date dateCreation, Double solde, Client client, Double decouvert) {
         super(codeCompte, dateCreation, solde, client);
         this.decouvert = decouvert;
     }
 
-    public Long getDecouvert() {
+    public Double getDecouvert() {
+
         return decouvert;
     }
 
-    public void setDecouvert(Long decouvert) {
+    public void setDecouvert(Double decouvert) {
+
         this.decouvert = decouvert;
     }
 }

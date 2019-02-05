@@ -22,6 +22,10 @@ public abstract class Compte implements Serializable {
     @OneToMany(mappedBy = "compte")
     private Collection<Operation> operations;
 
+    public Compte(){
+        super();
+    }
+
     public Compte(String codeCompte, Date dateCreation, Double solde, Client client) {
         super();
         this.codeCompte = codeCompte;
