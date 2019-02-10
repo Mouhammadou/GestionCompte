@@ -74,5 +74,12 @@ public abstract class Compte implements Serializable {
         this.operations = operations;
     }
 
+    public Double getDecouvert(){
+        return getDecouvert();
+    }
+
+    public Double getTaux(){
+        return getTaux();
+    }
 
 }
