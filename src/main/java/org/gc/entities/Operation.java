@@ -14,7 +14,7 @@ public abstract class Operation implements Serializable {
     @GeneratedValue
     private Long numero;
     private Date dateOperation;
-    private Double montant;
+    private double montant;
 
     @ManyToOne
     @JoinColumn(name = "CODE_CPTE")
@@ -24,7 +24,7 @@ public abstract class Operation implements Serializable {
         super();
     }
 
-    public Operation(Date dateOperation, Double montant, Compte compte) {
+    public Operation(Date dateOperation, double montant, Compte compte) {
         super();
         this.dateOperation = dateOperation;
         this.montant = montant;

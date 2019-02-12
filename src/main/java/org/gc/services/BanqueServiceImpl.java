@@ -30,7 +30,7 @@ public class BanqueServiceImpl implements IBanqueService {
     }
 
     @Override
-    public void verser(String cdeCpte, Double montant) {
+    public void verser(String cdeCpte, double montant) {
         Compte cp = consulterCompte(cdeCpte);
         Versement v = new Versement(new Date(), montant, cp);
         operationRepository.save(v);
@@ -39,7 +39,7 @@ public class BanqueServiceImpl implements IBanqueService {
     }
 
     @Override
-    public void retirer(String cdeCpte, Double montant) {
+    public void retirer(String cdeCpte, double montant) {
         double caisse=0;
         Compte cp = consulterCompte(cdeCpte);
         if (cp instanceof CompteCourant)
@@ -53,7 +53,7 @@ public class BanqueServiceImpl implements IBanqueService {
     }
 
     @Override
-    public void virement(String c1, String c2, Double montant) {
+    public void virement(String c1, String c2, double montant) {
         retirer(c1, montant);
         verser(c2, montant);
     }

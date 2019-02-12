@@ -13,7 +13,7 @@ public abstract class Compte implements Serializable {
     @Id
     private String codeCompte;
     private Date dateCreation;
-    private Double solde;
+    private double solde;
 
     @ManyToOne
     @JoinColumn(name = "CODE_CLI")
@@ -26,7 +26,7 @@ public abstract class Compte implements Serializable {
         super();
     }
 
-    public Compte(String codeCompte, Date dateCreation, Double solde, Client client) {
+    public Compte(String codeCompte, Date dateCreation, double solde, Client client) {
         super();
         this.codeCompte = codeCompte;
         this.dateCreation = dateCreation;
@@ -50,7 +50,7 @@ public abstract class Compte implements Serializable {
         this.dateCreation = dateCreation;
     }
 
-    public Double getSolde() {
+    public double getSolde() {
         return solde;
     }
 
@@ -74,12 +74,12 @@ public abstract class Compte implements Serializable {
         this.operations = operations;
     }
 
-    public Double getDecouvert(){
-        return getDecouvert();
+    public double getDecouvert() {
+        return ((CompteCourant)this).getDecouvert();
     }
 
-    public Double getTaux(){
-        return getTaux();
+    public double getTaux() {
+        return ((CompteEpargne)this).getTaux();
     }
 
 }

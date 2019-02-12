@@ -11,7 +11,7 @@ public class Retrait extends Operation {
         super();
     }
 
-    public Retrait(Date dateOperation, Double montant, Compte compte) {
+    public Retrait(Date dateOperation, double montant, Compte compte) {
         super(dateOperation, montant, compte);
     }
 }
