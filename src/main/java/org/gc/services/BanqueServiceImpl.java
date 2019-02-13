@@ -23,10 +23,10 @@ public class BanqueServiceImpl implements IBanqueService {
 
     @Override
     public Compte consulterCompte(String cdeCpte) {
-        Compte cpte = compteRepository.getOne(cdeCpte);
-        if (cpte == null)
-            throw new RuntimeException("Ce code compte n'existe pas");
-        return cpte;
+        Compte compte = compteRepository.getOne(cdeCpte);
+        if (compte == null)
+            throw new RuntimeException("Compte introuvable");
+        return compte;
     }
 
     @Override
