@@ -75,11 +75,11 @@ public abstract class Compte implements Serializable {
     }
 
     public double getDecouvert() {
-        return ((CompteCourant)this).getDecouvert();
+        return this.getDecouvert();
     }
 
     public double getTaux() {
-        return ((CompteEpargne)this).getTaux();
+        return this.getTaux();
     }
 
 }

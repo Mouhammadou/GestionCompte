@@ -21,14 +21,21 @@
                             <button type="submit" class="btn btn-primary">OK</button>
                         </div>
                     </form>
+                    <div class="text-danger" th:if="${exception}" th:text="${exception.message}">
+
+                    </div>
                 </div>
             </div>
             <div class="panel panel-primary" th:if="${compte}">
                 <div class="panel-heading">Informations sur un compte</div>
                 <div class=panel-body>
                     <div>
+                        <label>Client: </label>
+                        <label th:text="${compte.client.nom}"></label>
+                    </div>
+                    <div>
                         <label>Code: </label>
-                        <label th:text="${compte.codeCompte}"></label>
+                        <label th:text="${compte.codeCompte}" th:value="${codeCompte}"></label>
                     </div>
                     <div>
                         <label>Solde: </label>
@@ -42,14 +49,14 @@
                         <label>Type de compte: </label>
                         <label th:text="${compte.class.simpleName}"></label>
                     </div>
-                    <div th:if="${compte.class.simpleName == 'CompteCourant'}">
+                    <!--<div th:if="${compte.getDecouvert() != null}">
                         <label>Découvert: </label>
-                        <label th:text="${compte.decouvert}"></label>
+                        <label th:text="${compte.getDecouvert()}"></label>
                     </div>
-                    <div th:if="${compte.class.simpleName == 'CompteEpargne'}">
+                    <div th:if="${compte.getTaux() != null}">
                         <label>Taux: </label>
-                        <label th:text="${compte.taux}"></label>
-                    </div>
+                        <label th:text="${compte.getTaux()}"></label>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -63,7 +70,17 @@
             <div class="panel panel-primary" th:if="${compte}">
                 <div class="panel-heading">Listes des opérations</div>
                 <div class=panel-body>
-
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Num</th><th>Type</th><th>Date</th><th>Montant</th>
+                        </tr>
+                        <tr th:each="o:${listOperations}">
+                            <td th:text="${o.numero}"></td>
+                            <td th:text="${o.class.simpleName}"></td>
+                            <td th:text="${o.DateOperation}"></td>
+                            <td th:text="${o.montant}"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
