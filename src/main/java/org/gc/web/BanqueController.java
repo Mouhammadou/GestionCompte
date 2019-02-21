@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class BanqueController {
@@ -32,5 +33,23 @@ public class BanqueController {
             model.addAttribute("exception", e);
         }
         return "comptes";
+    }
+
+    @RequestMapping(value = "/saveOperation", method = RequestMethod.POST)
+    public String saveOperation(Model model, String typeOperation, String codeCompte, double montant, String codeCompte2){
+        try {
+            if (typeOperation.equals("versement")){
+                banqueService.verser(codeCompte, montant);
+            }
+            else if (typeOperation.equals("retrait")){
+                banqueService.retirer(codeCompte, montant);
+            }
+            else if (typeOperation.equals("virement")){
+                banqueService.virement(codeCompte, codeCompte2, montant);
+            }
+        } catch (Exception e){
+            model.addAttribute("error", e);
+        }
+        return "redirect:/consulterCompte?codeCompte="+codeCompte;
     }
 }

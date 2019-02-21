@@ -64,7 +64,33 @@
             <div class="panel panel-primary" th:if="${compte}">
                 <div class="panel-heading">Opérations sur un compte compte</div>
                 <div class=panel-body>
-
+                    <form th:action="@{/saveOperation}" method="post">
+                        <div>
+                            <label>Compte </label>
+                            <input type="hidden" nzme="codeCompte" th:value="${codeCompte}">
+                            <label th:text="${codeCompte}"></label>
+                        </div>
+                        <div>
+                            <input type="radio" name="typeOperation" value="versement" checked="checked"
+                             onchange="document.getElementById('forVersement').style.display='none'">
+                            <label>Versement</label>
+                            <input type="radio" name="typeOperation" value="retrait"
+                            onchange="document.getElementById('forVersement').style.display='none'">
+                            <label>Retrait</label>
+                            <input type="radio" name="typeOperation" value="virement"
+                             onchange="document.getElementById('forVersement').style.display='block'">
+                            <label>Virement</label>
+                        </div>
+                        <div id="forVersement" style="display: none">
+                            <label>Vers :</label>
+                            <input type="text" name="codeCompte2">
+                        </div>
+                        <div>
+                            <label>Montant :</label>
+                            <input type="text" name="montant">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
                 </div>
             </div>
             <div class="panel panel-primary" th:if="${compte}">
