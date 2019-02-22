@@ -1,5 +1,6 @@
 package org.gc.services;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.gc.dao.CompteRepository;
 import org.gc.dao.OperationRepository;
 import org.gc.entities.*;
@@ -54,6 +55,9 @@ public class BanqueServiceImpl implements IBanqueService {
 
     @Override
     public void virement(String c1, String c2, double montant) {
+        if (c1.equals(c2)){
+            throw  new RuntimeException("Impossible d'effectuer un virement sur le meme compte");
+        }
         retirer(c1, montant);
         verser(c2, montant);
     }

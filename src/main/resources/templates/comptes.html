@@ -67,7 +67,7 @@
                     <form th:action="@{/saveOperation}" method="post">
                         <div>
                             <label>Compte </label>
-                            <input type="hidden" nzme="codeCompte" th:value="${codeCompte}">
+                            <input type="hidden" name="codeCompte" th:value="${codeCompte}">
                             <label th:text="${codeCompte}"></label>
                         </div>
                         <div>
@@ -88,6 +88,9 @@
                         <div>
                             <label>Montant :</label>
                             <input type="text" name="montant">
+                        </div>
+                        <div th:class="text-danger" th:text="${#httpServletRequest.getParameter('error')}">
+
                         </div>
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </form>
