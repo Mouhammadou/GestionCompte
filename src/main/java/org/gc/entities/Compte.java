@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -16,11 +17,11 @@ public abstract class Compte implements Serializable {
     private double solde;
 
     @ManyToOne
-    @JoinColumn(name = "CODE_CLI")
+    @JoinColumn(name = "CODE_CLIENT")
     private Client client;
 
-    @OneToMany(mappedBy = "compte")
-    private Collection<Operation> operations;
+    @OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
+    private List<Operation> operations;
 
     public Compte(){
         super();
@@ -70,7 +71,7 @@ public abstract class Compte implements Serializable {
         return operations;
     }
 
-    public void setOperations(Collection<Operation> operations) {
+    public void setOperations(List<Operation> operations) {
         this.operations = operations;
     }
 
