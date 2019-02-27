@@ -2,6 +2,7 @@ package org.gc.security;
 
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Value("${spring.queries.users-query}")
+    private String usersQuery;
+
+    @Value("${spring.queries.roles-query}")
+    private String rolesQuery;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{ //manière pour chercher les users
         /*
@@ -29,17 +36,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         */
         auth.jdbcAuthentication()
             .dataSource(dataSource)
-            .usersByUsernameQuery("SELECT username as principal, password as credentials, active FROM users WHERE username=?")
-            .authoritiesByUsernameQuery("SELECT username as principal, roles as role FROM users_roles WHERE username=?")
+            .usersByUsernameQuery(usersQuery)
+            .authoritiesByUsernameQuery(rolesQuery)
             .rolePrefix("ROLE_")
             .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{ //définir les stratégies de sécu
-        http.formLogin().loginPage("/login"); //auth basic par formulaire
+    protected void configure(HttpSecurity http) throws Exception { //définir les stratégies de sécu
+        /*http.formLogin().loginPage("/login"); //auth basic par formulaire
         http.authorizeRequests().antMatchers("/operations", "/consulterCompte").hasRole("USER"); //sécurise les ressources de l'appli
         http.authorizeRequests().antMatchers("/saveOperation").hasRole("ADMIN");
-        http.exceptionHandling().accessDeniedPage("/403");
+        http.exceptionHandling().accessDeniedPage("/403");*/
+
+        http.
+                authorizeRequests()
+                .antMatchers("/operations", "/consulterCompte").hasRole("USER")
+                .antMatchers("/saveOperation").hasRole("ADMIN")
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
     }
 }
