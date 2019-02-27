@@ -7,6 +7,7 @@ import org.gc.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,6 @@ public class BanqueServiceImpl implements IBanqueService {
     private CompteRepository compteRepository;
     @Autowired
     private OperationRepository operationRepository;
-
 
     @Override
     public Compte consulterCompte(String cdeCpte) {
