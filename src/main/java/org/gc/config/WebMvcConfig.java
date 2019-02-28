@@ -1,4 +1,4 @@
-package org.gc.security;
+package org.gc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
